@@ -1,0 +1,87 @@
+# ===============================
+# Python
+# ===============================
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+*.pdb
+*.egg
+*.egg-info/
+.eggs/
+dist/
+build/
+pip-wheel-metadata/
+.pytest_cache/
+.tox/
+.coverage
+htmlcov/
+*.log
+
+# Ambiente virtual
+.venv/
+venv/
+env/
+ENV/
+
+# ===============================
+# Docker
+# ===============================
+# Volumes e dados persistentes
+kafka_data/
+zookeeper_data/
+mysql_data/
+# Logs de container
+*.pid
+*.seed
+*.lock
+*.swp
+
+# Arquivos de cache do Docker Compose
+.docker-compose/
+*.bak
+*.tmp
+
+# ===============================
+# MySQL / Banco
+# ===============================
+# Dumps ou exports locais
+*.sql
+*.sql.gz
+*.dump
+*.db
+*.tar
+*.zip
+
+# ===============================
+# Sistema e Editor
+# ===============================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# ===============================
+# Logs e configs locais
+# ===============================
+*.log
+*.out
+*.err
+.env
+.env.local
+.env.development
+.env.production
+.env.test

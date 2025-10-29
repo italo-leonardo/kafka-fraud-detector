@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   kafka:
     image: apache/kafka:4.0.1
@@ -7,14 +5,25 @@ services:
     ports:
       - "9092:9092"
     environment:
+      # Configuração do broker KRaft (sem Zookeeper)
       KAFKA_NODE_ID: 1
       KAFKA_PROCESS_ROLES: broker,controller
       KAFKA_LISTENERS: PLAINTEXT://:9092,CONTROLLER://:9093
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
       KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
       KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+
+      # IP visível pelo host (use 172.17.0.1 para Ubuntu + Docker Desktop)
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://172.17.0.1:9092
+
+      # Permite criar tópicos automaticamente
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+
+      # Define diretório interno de dados
+      KAFKA_LOG_DIRS: /var/lib/kafka/data
+
+    volumes:
+      - kafka_data:/var/lib/kafka/data
 
   mysql:
     image: mysql:8
@@ -41,3 +50,6 @@ services:
       - mysql
     ports:
       - "8080:8080"
+
+volumes:
+  kafka_data:
